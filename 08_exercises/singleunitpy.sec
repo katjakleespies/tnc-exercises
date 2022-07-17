@@ -1,0 +1,18 @@
+import numpy as np
+import scipy.stats as scist
+
+def record(theta):
+
+    mu1=10.*(np.cos(theta-np.pi/8)+1)/2
+    
+    mu2=2.*(np.cos(theta-5*np.pi/8)+1)/2
+
+    k=np.zeros((2,len(theta)))
+    noise=np.random.rand(2,len(theta))
+    for n in range(len(theta)):
+        th=theta[n]
+        k[0,n]=scist.poisson.ppf(noise[0,n],mu1[n])
+        k[1,n]=scist.poisson.ppf(noise[1,n],mu2[n])
+
+
+    return k
